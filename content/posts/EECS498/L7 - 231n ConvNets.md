@@ -5,9 +5,9 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 7
 url: "/posts/EECS498/L7 - 231n ConvNets"  # 自动生成的URL
 ---
-
 ### Convolutional Neural Networks (CNNs / ConvNets)
 
 - **CNNs 与普通神经网络的相似性**：
@@ -102,14 +102,17 @@ A ConvNet is made up of Layers（可以认为神经网络是a sequence of layers
    - 我们接下来要探讨在output volume中，有多少个神经元，它们是如何排列的：
    - **输出体积的大小由三个超参数控制：深度（depth）、步幅（stride）和零填充（zero-padding）。**
    - 深度对应于滤波器的数量，每个滤波器学习输入中的不同特征。
+
      - 一组神经元如果都在观察输入中的同一区域，则被称为一个“深度列”（depth column），也有人称之为“纤维”（fibre）。
    - 步幅决定滤波器滑动的步长，步幅为 1 时每次移动 1 个像素，步幅为 2 时每次移动 2 个像素。
    - 零填充是指在输入体积的边界周围填充零值。
+
      - **零填充用于控制输出体积的空间尺寸(control the spatial size of the output)**，
      - 常用公式为 $P = \frac{F-1}{2}$，其中 $F$ 为滤波器尺寸
      - 通常我们设置$S=1$ 时确保输入和输出尺寸相同。
    - 输出体积的空间尺寸计算公式为：
    - {{< figure src="/images/EECS498/L7 - 231n ConvNets by_2025-03-07-2.png" alt="L7 - 231n ConvNets by_2025-03-07-2.png" >}}
+
      $$
      \frac{W - F + 2P}{S} + 1
      $$
@@ -124,10 +127,11 @@ A ConvNet is made up of Layers（可以认为神经网络是a sequence of layers
      - - 当输入图像具有**特定的中心化结构**时，不同位置可能需要学习完全不同的特征。
      - 一个典型的例子是人脸图像：如果人脸被居中放置在图像中，那么眼睛和头发的特征可能只出现在图像的特定区域。在这种情况下，不同位置需要学习不同的特征。
      - 对于这种情况，通常会**放松参数共享**的机制，转而使用**局部连接层**（Locally-Connected Layer）。**在局部连接层中，每个神经元使用独立的参数，而不是共享参数。**
-
 5. **Numpy 示例**:
+
    - 输入体积为 $X$，形状为 $(11, 11, 4)$，滤波器尺寸为 $5 \times 5$，步幅为 2，无零填充，输出体积为 $4 \times 4$。
    - 激活图的计算示例：
+
      $$
      V[0,0,0] = \text{np.sum}(X[:5,:5,:] \times W0) + b0
      $$

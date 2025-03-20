@@ -5,6 +5,7 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 10
 url: "/posts/EECS498/L10 - 231n Training I"  # 自动生成的URL
 ---
 ### Data Preprocessing

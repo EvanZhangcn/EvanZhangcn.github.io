@@ -5,6 +5,7 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 12
 url: "/posts/EECS498/L12 - The Unreasonable Effectiveness of Recurrent Neural Networks"  # 自动生成的URL
 ---
 https://karpathy.github.io/2015/05/21/rnn-effectiveness/

@@ -5,6 +5,7 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 11
 url: "/posts/EECS498/L11 - 231n Training II"  # 自动生成的URL
 ---
 ### Gradient Checks
@@ -656,6 +657,7 @@ def adam(w, dw, config=None):
 ### 4. **超参数范围**
 
 - **对数尺度搜索**：对于学习率和正则化强度等超参数，建议在对数尺度上进行搜索。例如：
+
   $$
   \text{learning\_rate} = 10^{\text{uniform}(-6, 1)}
   $$

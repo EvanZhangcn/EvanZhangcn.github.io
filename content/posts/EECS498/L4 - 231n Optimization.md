@@ -5,5 +5,6 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 4
 url: "/posts/EECS498/L4 - 231n Optimization"  # 自动生成的URL
 ---

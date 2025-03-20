@@ -5,6 +5,7 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 5
 url: "/posts/EECS498/L5 - 231n Neural Networks"  # 自动生成的URL
 ---
 ### Modeling one neuron
@@ -107,6 +108,7 @@ Every activation function (or _non-linearity_) takes a single number and perfor
 #### 4. **Leaky ReLU 激活函数**
 
 - **公式**：
+
   $$
   f(x) = \begin{cases}
   \alpha x & \text{if } x < 0 \\
@@ -117,8 +119,10 @@ Every activation function (or _non-linearity_) takes a single number and perfor
   其中 $\alpha$ 是一个小的正常数（如 0.01）。
 - **输出范围**：$(-\infty, +\infty)$
 - **优点**：
+
   - 缓解 ReLU 的神经元死亡问题。
 - **缺点**：
+
   - 效果不稳定，$\alpha$ 的选择可能影响性能。
 - **使用建议**：如果 ReLU 存在问题，可以尝试。
 
@@ -235,11 +239,13 @@ $$
 - **偏置向量**：每一层的偏置 $b$ 是一个向量，维度为 $[\text{当前层神经元数} \times 1]$。
 - **计算过程**：
   - 每一层的输出 $h$ 通过以下公式计算：
+
     $$
     h = f(W \cdot x + b)
     $$
 
     其中：- $x$ 是输入向量（或矩阵）。
+
     - $f$ 是激活函数。
 
 ---

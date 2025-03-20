@@ -5,6 +5,7 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 6
 url: "/posts/EECS498/L6 - 231n Backpropagation"  # 自动生成的URL
 ---
 本节两个核心概念： 前向传播 与 反向传播

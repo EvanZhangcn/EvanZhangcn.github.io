@@ -5,6 +5,7 @@ author: "EvanZhangcn"
 draft: false
 categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
+weight: 3
 url: "/posts/EECS498/L3 - 231n Linear Classification"  # 自动生成的URL
 ---
 ---
