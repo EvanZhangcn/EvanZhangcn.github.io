@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/bilibili/</loc>
+    <loc>https://evanzhangcn.github.io/tags/bilibili/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://evanzhangcn.github.io/categories/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://evanzhangcn.github.io/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/test/</loc>
+    <loc>https://evanzhangcn.github.io/posts/test/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://evanzhangcn.github.io/posts/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://evanzhangcn.github.io/tags/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
+    <loc>https://evanzhangcn.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E9%80%9A%E7%94%A8%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://evanzhangcn.github.io/categories/%E9%80%9A%E7%94%A8%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2024-08-04T03:25:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://evanzhangcn.github.io/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://evanzhangcn.github.io/archives/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://evanzhangcn.github.io/search/</loc>
   </url>
 </urlset>
