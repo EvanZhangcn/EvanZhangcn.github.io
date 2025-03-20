@@ -1,12 +1,12 @@
 ---
 title: "L3 - 231n Linear Classification"
-date: 2025-03-20T09:31:51Z
+date: "2025-03-20 09:49:07"
+author: "EvanZhangcn"
 draft: false
 categories: ["未分类"]  # 在此编辑分类
 tags: []               # 在此添加标签
+url: "/posts/EECS498/L3 - 231n Linear Classification"  # 自动生成的URL
 ---
-
-
 
 
 ---
@@ -226,7 +226,7 @@ The cross-entropy between a “true” distribution $p$ and an estimated distrib
 交叉熵用于衡量**两个概率分布 $p$ 和 $q$ 之间的差异**，定义为：  
 $$
 H(p, q) = -\sum_x p(x) \log q(x)
-$$
+$$  
 其中，$p$ 是“真实”分布，$q$ 是估计分布。
 **交叉熵越大，说明两个分布之间的差异越大。**
 1.当q完全匹配p时，交叉熵达到最小值，等于真实分布p的熵H(p)。 
@@ -237,7 +237,7 @@ $$
 Softmax 分类器通过最小化交叉熵来优化模型。其中，估计分布 $q$ 是 Softmax 函数的输出：  
 $$
 q = \frac{e^{f_{y_i}}}{\sum_j e^{f_j}}
-$$
+$$  
 而“真实”分布 $p$ 是一个独热编码（one-hot）向量，即在正确类别位置为 1，其余位置为 0：  
 $$
 p = [0, \dots, 1, \dots, 0]
@@ -278,7 +278,7 @@ $$
 The cross-entropy can be decomposed into the entropy of the true distribution $H(p)$ and the **Kullback-Leibler (KL) divergence** $D_{KL}(p || q)$:    
 $$
 H(p, q) = H(p) + D_{KL}(p || q)
-$$
+$$  
 其中：  
 1. **$H(p)$ 是真实分布 $p$ 的熵，是一个固定值。**  
 2. $D_{KL}(p || q)$ 是 KL 散度，衡量 $q$ 与 $p$ 之间的差异。
@@ -315,7 +315,7 @@ $$
    ```python
    f = np.array([123, 456, 789])  # 示例：3个类别，每个类别有较大的分数
    p = np.exp(f) / np.sum(np.exp(f))  # 错误做法：可能导致数值问题
-   
+
    # 正确做法：先将 f 中的值平移，使得最大值为 0
    f -= np.max(f)  # f 变为 [-666, -333, 0]
    p = np.exp(f) / np.sum(np.exp(f))  # 安全操作，得到正确结果
@@ -347,6 +347,7 @@ the ordering of the scores is interpretable :得分的相对大小排序是可�
 In other words, the Softmax classifier is never fully happy with the scores it produces: the correct class could always have a higher probability and the incorrect classes always a lower probability and **the loss would always get better**.（损失永远不可能为0） 
 
 However, the SVM is happy once the margins are satisfied（损失可以出现为0情况） and it does not micromanage the exact scores beyond this constraint.
+
 
 
 

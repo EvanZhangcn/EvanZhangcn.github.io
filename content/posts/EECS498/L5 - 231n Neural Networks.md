@@ -1,10 +1,13 @@
 ---
 title: "L5 - 231n Neural Networks"
-date: 2025-03-20T09:31:51Z
+date: "2025-03-20 09:49:07"
+author: "EvanZhangcn"
 draft: false
 categories: ["未分类"]  # 在此编辑分类
 tags: []               # 在此添加标签
+url: "/posts/EECS498/L5 - 231n Neural Networks"  # 自动生成的URL
 ---
+
 
 ### Modeling one neuron
 注意：下面的类比只是一个粗糙的类比，真实生物学没这么简单。

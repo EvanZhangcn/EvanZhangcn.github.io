@@ -1,10 +1,14 @@
 ---
 title: "L6 - 231n Backpropagation"
-date: 2025-03-20T09:31:51Z
+date: "2025-03-20 09:49:07"
+author: "EvanZhangcn"
 draft: false
 categories: ["未分类"]  # 在此编辑分类
 tags: []               # 在此添加标签
+url: "/posts/EECS498/L6 - 231n Backpropagation"  # 自动生成的URL
 ---
+
+
 
 本节两个核心概念： 前向传播 与 反向传播
 1. **Forward Pass (前向传播)**：
