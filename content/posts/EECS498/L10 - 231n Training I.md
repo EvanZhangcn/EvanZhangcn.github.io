@@ -95,7 +95,7 @@ url: "/posts/EECS498/L10 - 231n Training I"  # 自动生成的URL
 1. **数据归一化**：归一化将输入数据调整到一个标准范围内（例如，均值为0，标准差为1）。这样，输入数据的分布更加对称，减少了极端值的影响，使得权重在训练过程中更有可能均匀分布在正负之间。
 2. **权重初始化**：在训练开始时，权重通常会被随机初始化，且这些初始值通常是对称分布的（例如，均值为0的正态分布）。**这种对称性在训练过程中会被保持，尤其是在数据已经归一化的情况下。**
 
-### 1. **全零初始化的陷阱   All zero initialization
+### 1. 全零初始化的陷阱   All zero initialization
 
 - **问题**：如果将所有权重初始化为零，所有神经元会计算相同的输出和梯度，导致参数更新完全一致，无法打破对称性。
 - **结论**：全零初始化是错误的，因为它会导致神经元之间缺乏差异性。
@@ -106,6 +106,7 @@ url: "/posts/EECS498/L10 - 231n Training I"  # 自动生成的URL
 
 - **方法**：将权重初始化为接近零(但不等于0)的小随机数，打破对称性，这种做法称为“symmetry breaking”.
 - **一种可能的实现如下**：
+
   $$
   W = 0.01 \times \text{np.random.randn}(D, H)
   $$
@@ -146,11 +147,13 @@ $$
 
 - **解决方法**：将每个神经元的权重向量缩放为 $1/\sqrt{n}$，其中 $n$ 是输入数量。(这个方法也称为： Xavier 初始化  , 不同于He初始化)
 - **公式**：
+
   $$
   w = \frac{\text{np.random.randn}(n)}{\sqrt{n}}
   $$
 - **推导过程如下**：[Explain: Click Me!](http://cs231n.github.io/neural-networks-2/#init#:~:text=The%20sketch%20of%20the%20derivation%20is%20as%20follows%3A%20)
   考虑神经元激活值 $s = \sum_{i=1}^{n} w_i x_i$，其方差为：
+
   $$
   \text{Var}(s) = n \cdot \text{Var}(w) \cdot \text{Var}(x)
   $$
@@ -364,6 +367,7 @@ There are several ways of **controlling the capacity of Neural Networks** to pre
 ### 1. **L2 正则化**
 
 - **定义**：在目标函数中增加所有权重的平方和，公式为：
+
   $$
   \frac{1}{2} \lambda w^2
   $$
@@ -372,6 +376,7 @@ There are several ways of **controlling the capacity of Neural Networks** to pre
 - 注意Data100课程中前面没有1/2这个系数，EECS498大部分作业中也没有这个系数。
 - 为什么喜欢前面多加一个系数？求导结果好看。It is common to see the factor of $\frac{1}{2}$ in front because then the gradient of this term with respect to the parameter $w$ is simply $\lambda w$ instead of $2\lambda w$.
 - **梯度更新**：权重更新时线性衰减：using the L2 regularization ultimately means that **every weight is decayed linearly**
+
   $$
   W += -\lambda \cdot W
   $$
@@ -528,6 +533,7 @@ Vanilla Dropout 的实现方式如下：
 ### 1. **数据损失的定义**
 
 - **公式**：数据损失是每个样本损失的平均值：
+
   $$
   L = \frac{1}{N} \sum_{i} L_i
   $$
@@ -539,20 +545,24 @@ Vanilla Dropout 的实现方式如下：
 ### 2. **分类任务**
 
 - **SVM 损失（Hinge Loss）**：
+
   $$
   L_i = \sum_{j \neq y_i} \max(0, f_j - f_{y_i} + 1)
   $$
 
   其中，$f_j$ 是第 $j$ 类的得分，$f_{y_i}$ 是正确类别的得分。
 - **平方 Hinge Loss**：
+
   $$
   L_i = \sum_{j \neq y_i} \max(0, f_j - f_{y_i} + 1)^2
   $$
 - **Softmax 损失（交叉熵损失）**：
+
   $$
   L_i = -\log \left( \frac{e^{f_{y_i}}}{\sum_j e^{f_j}} \right)
   $$
 - **大规模分类问题**：
+
   - **分层 Softmax**：将类别组织成树结构，每个节点训练一个 Softmax 分类器。
 
 ---
@@ -561,12 +571,14 @@ Vanilla Dropout 的实现方式如下：
 
 - **多标签分类**：每个样本可能有多个标签，使用独立的二分类器。
 - **Hinge Loss**：
+
   $$
   L_i = \sum_j \max(0, 1 - y_{ij} f_j)
   $$
 
   其中，$y_{ij}$ 是第 $i$ 个样本在第 $j$ 个属性上的标签（$+1$ 或 $-1$）。
 - **Logistic 回归损失**：
+
   $$
   L_i = -\sum_j \left( y_{ij} \log(\sigma(f_j)) + (1 - y_{ij}) \log(1 - \sigma(f_j)) \right)
   $$
