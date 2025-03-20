@@ -63,22 +63,27 @@ params:
   comments: true # 评论
   images: ["https://i.postimg.cc/7hwBy7VS/calcr.png"] # 缺省的图片，比如，博客的封面
   DateFormat: "2006-01-02" # 这个时间是作者自己写的，只能这样写
-
+  math: true
   # 首页的文章上方的一些信息
   homeInfoParams:
     # 首页的 profile 内容
     Title: "Hey Guys 👋"
     # 首页的 profile 内容
     Content: >
-      Welcome to my Blog! 这里主要记录了我的视频创作的一些补充说明材料。博客因为是托管在 Github 上面，以及，图床使用的是国外免费的 Postimages，所以，挂上一个梯子可能会让访问更加顺畅。
+      Welcome to my Blog! 这里主要记录了我备考课内期末和学习课外公开课的一些笔记材料。
       <br>
-      也可以在其他地方访问我的文字材料，如下：
+
+      因为博客是托管在 Github 上面，所以挂上一个梯子可能会让访问更加顺畅。
+      
       <br>
-      <div>
-      ● [SonnyCalcr's Notion](https://sonnycalcr.notion.site/)
 
       </div>
+
   # 社交帐号的按钮
+      # 也可以在其他地方访问我的文字材料，如下：
+      # <br>
+      # <div>
+      # ● [SonnyCalcr's Notion](https://sonnycalcr.notion.site/)
   socialIcons:
     - name: github
       title: Follow my Github
@@ -140,6 +145,17 @@ markup:
   goldmark:
     renderer:
       unsafe: true # 可以 unsafe，有些 html 标签和样式可能需要
+    parser:
+      attribute:
+        block: true
+        title: false  
+  image:
+  quality: 85
+  anchor: smart
+  resampleFilter: lanczos
+  exif:
+    disableDate: true
+    disableLatLong: true
   highlight:
     anchorLineNos: false # 不要给行号设置锚标
     codeFences: true # 代码围栏

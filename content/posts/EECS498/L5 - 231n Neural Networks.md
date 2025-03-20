@@ -3,45 +3,44 @@ title: "L5 - 231n Neural Networks"
 date: "2025-03-20 09:49:07"
 author: "EvanZhangcn"
 draft: false
-categories: ["未分类"]  # 在此编辑分类
+categories: ["EECS498"]  # 在此编辑分类
 tags: []               # 在此添加标签
 url: "/posts/EECS498/L5 - 231n Neural Networks"  # 自动生成的URL
 ---
-
-
 ### Modeling one neuron
+
 注意：下面的类比只是一个粗糙的类比，真实生物学没这么简单。
 神经元的工作过程：
 
-| **步骤**   | **描述**                                                                             |
-| -------- | ---------------------------------------------------------------------------------- |
-| **输入信号** | 神经元通过树突（dendrites）接收来自其他神经元的输入信号。                                                  |
-| **信号加权** | 每个输入信号 $x_i$ 与对应的突触权重 $w_i$ 相乘，得到 $w_i x_i$。权重 $w_i$ 表示突触的强度，可以是兴奋性（正权重）或抑制性（负权重）。 |
-| **信号求和** | 所有加权后的信号在细胞体（cell body）中求和，得到总输入 $z = \sum_i w_i x_i$。                             |
-| **激活函数** | 如果总输入 $z$ 超过某个阈值，神经元会通过轴突（axon）发送一个脉冲信号。激活函数 $f(z)$ 模拟神经元的脉冲频率，将总输入映射到输出。          |
-| **输出信号** | 轴突将信号传递给其他神经元的树突，完成信息传递。                                                           |
-生物神经元通过树突接收信号，通过突触权重加权求和，并通过轴突传递信号。
+| **步骤**                                                         | **描述**                                                                                                                               |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **输入信号**                                                     | 神经元通过树突（dendrites）接收来自其他神经元的输入信号。                                                                                    |
+| **信号加权**                                                     | 每个输入信号$x_i$ 与对应的突触权重 $w_i$ 相乘，得到 $w_i x_i$。权重 $w_i$ 表示突触的强度，可以是兴奋性（正权重）或抑制性（负权重）。 |
+| **信号求和**                                                     | 所有加权后的信号在细胞体（cell body）中求和，得到总输入$z = \sum_i w_i x_i$。                                                              |
+| **激活函数**                                                     | 如果总输入$z$ 超过某个阈值，神经元会通过轴突（axon）发送一个脉冲信号。激活函数 $f(z)$ 模拟神经元的脉冲频率，将总输入映射到输出。         |
+| **输出信号**                                                     | 轴突将信号传递给其他神经元的树突，完成信息传递。                                                                                             |
+| 生物神经元通过树突接收信号，通过突触权重加权求和，并通过轴突传递信号。 |                                                                                                                                              |
 
-----
+---
+
 生物神经元与人工神经网络的类比：
 
-| **生物神经元中的组件**                 | **人工神经网络中的类比**                              |
-| ----------------------------- | ------------------------------------------- |
-| **树突（Dendrites）**             | 输入层（Input Layer）：接收输入数据 $x_i$。              |
-| **突触权重（Synaptic Weights）**    | 权重 $w_i$：控制输入信号对神经元的影响强度。                   |
-| **细胞体（Cell Body）**            | 加权求和（Weighted Sum）：计算 $z = \sum_i w_i x_i$。 |
-| **轴突（Axon）**                  | 输出层（Output Layer）：传递激活函数的结果 $f(z)$。         |
-| **激活函数（Activation Function）** | 激活函数 $f(z)$：模拟神经元的脉冲频率，如 Sigmoid、ReLU 等。    |
-| **脉冲频率（Firing Rate）**         | 输出值：表示神经元的激活程度。                             |
-人工神经网络模拟了这一过程，输入数据通过权重加权求和，再经过**非线性激活函数**处理，最终输出结果。
-
-
+| **生物神经元中的组件**                                                                             | **人工神经网络中的类比**                                |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **树突（Dendrites）**                                                                              | 输入层（Input Layer）：接收输入数据$x_i$。                  |
+| **突触权重（Synaptic Weights）**                                                                   | 权重$w_i$：控制输入信号对神经元的影响强度。                 |
+| **细胞体（Cell Body）**                                                                            | 加权求和（Weighted Sum）：计算$z = \sum_i w_i x_i$。        |
+| **轴突（Axon）**                                                                                   | 输出层（Output Layer）：传递激活函数的结果$f(z)$。          |
+| **激活函数（Activation Function）**                                                                | 激活函数$f(z)$：模拟神经元的脉冲频率，如 Sigmoid、ReLU 等。 |
+| **脉冲频率（Firing Rate）**                                                                        | 输出值：表示神经元的激活程度。                                |
+| 人工神经网络模拟了这一过程，输入数据通过权重加权求和，再经过**非线性激活函数**处理，最终输出结果。 |                                                               |
 
 ### Single neuron as a linear classifier
+
 核心要点：
 A single neuron can be used to implement a binary classifier.
 
-Binary Softmax classifier(也称为：逻辑回归模型 logistic regression): 
+Binary Softmax classifier(也称为：逻辑回归模型 logistic regression):
 对于线性组合的结果套上一层Softmax函数 + 交叉熵衡量损失
 
 Binary SVM classifier：
@@ -49,13 +48,15 @@ Binary SVM classifier：
 
 在 SVM 和 Softmax 分类器中，**正则化损失可以类比为逐渐遗忘的过程**，因为它会在每次参数更新后将所有突触权重W降低，驱向零。
 
-
 ### Commonly used activation functions
+
 [Explain: Click Me!](https://cs231n.github.io/neural-networks-1/#:~:text=Commonly%20used%20activation%20functions)
 
 激活函数（也称为： 非线性）接受一个单独的数，并且对它做确定固定的数学运算。
 Every activation function (or _non-linearity_) takes a single number and performs a certain fixed mathematical operation on it.
+
 #### 1. **Sigmoid 激活函数**
+
 - **公式**：
   $$
   \sigma(x) = \frac{1}{1 + e^{-x}}
@@ -71,6 +72,7 @@ Every activation function (or _non-linearity_) takes a single number and perfor
 ---
 
 #### 2. **Tanh 激活函数**
+
 - **公式**：
   $$
   \tanh(x) = 2\sigma(2x) - 1
@@ -81,11 +83,12 @@ Every activation function (or _non-linearity_) takes a single number and perfor
 - **缺点**：
   - 仍然存在梯度消失问题。
 - **使用建议**：优于 Sigmoid，但不如 ReLU。
-![[L5 - 231n Neural Networks by_2025-03-05.png]]
+  {{< figure src="/images/EECS498/L5 - 231n Neural Networks by_2025-03-05.png" alt="L5 - 231n Neural Networks by_2025-03-05.png" >}}
 
 ---
 
 #### 3. **ReLU 激活函数**
+
 - **公式**：
   $$
   f(x) = \max(0, x)
@@ -97,10 +100,12 @@ Every activation function (or _non-linearity_) takes a single number and perfor
 - **缺点**：
   - **神经元死亡**：某些神经元可能永远不激活("die")，导致梯度为 0。
 - **使用建议**：推荐使用，但需注意学习率设置(例如：如果学习率设置过高，会发现你的神经网络中大约40%的neurons都不激活)。
-![[L5 - 231n Neural Networks by_2025-03-05-1.png]]
+  {{< figure src="/images/EECS498/L5 - 231n Neural Networks by_2025-03-05-1.png" alt="L5 - 231n Neural Networks by_2025-03-05-1.png" >}}
+
 ---
 
 #### 4. **Leaky ReLU 激活函数**
+
 - **公式**：
   $$
   f(x) = \begin{cases}
@@ -108,6 +113,7 @@ Every activation function (or _non-linearity_) takes a single number and perfor
   x & \text{if } x \geq 0
   \end{cases}
   $$
+
   其中 $\alpha$ 是一个小的正常数（如 0.01）。
 - **输出范围**：$(-\infty, +\infty)$
 - **优点**：
@@ -119,6 +125,7 @@ Every activation function (or _non-linearity_) takes a single number and perfor
 ---
 
 #### 5. **Maxout 激活函数**
+
 - **公式**：
   $$
   f(x) = \max(w_1^T x + b_1, w_2^T x + b_2)
@@ -131,52 +138,71 @@ Every activation function (or _non-linearity_) takes a single number and perfor
 - **使用建议**：适合对性能要求较高的场景。
 
 ---
+
 - **推荐使用：ReLU，注意学习率设置。**
 - **备选方案**：Leaky ReLU 或 Maxout。
 - **不推荐使用**：Sigmoid。
 - **可尝试但效果较差**：Tanh。
+
 ---
+
 #### 公式汇总
-$$Sigmoid: \sigma(x) = \frac{1}{1 + e^{-x}}$$
 
-$$Tanh: \tanh(x) = 2\sigma(2x) - 1$$
+$$
+Sigmoid: \sigma(x) = \frac{1}{1 + e^{-x}}
+$$
 
-$$ReLU: f(x) = \max(0, x)$$
+$$
+Tanh: \tanh(x) = 2\sigma(2x) - 1
+$$
 
-$$Leaky ReLU: f(x) = \begin{cases}
+$$
+ReLU: f(x) = \max(0, x)
+$$
+
+$$
+Leaky ReLU: f(x) = \begin{cases}
 \alpha x & \text{if } x < 0 \\
 x & \text{if } x \geq 0
-\end{cases}$$
+\end{cases}
+$$
 
-$$Maxout: f(x) = \max(w_1^T x + b_1, w_2^T x + b_2)$$
+$$
+Maxout: f(x) = \max(w_1^T x + b_1, w_2^T x + b_2)
+$$
 
-----
-
+---
 
 ### Neural Network architectures
+
 #### 1. **神经网络的基本结构**
+
 - **神经元连接**：神经网络是由神经元组成的**有向无环图（DAG）**，神经元的输出可以作为其他神经元的输入。
 - **分层结构**：神经网络通常被组织成**层（Layer）**(Neural Network models are often organized into distinct layers of neurons)
 - 常见的层类型是**全连接层（Fully-Connected Layer）**。
   - 全连接层中，相邻层的神经元之间**两两连接**，但同一层内的神经元**没有连接**。
 - **命名规则**：
   - **N 层神经网络**：不计算输入层(输入层不算层数
-	  - 例如：一个2层的神经网络指的是： hidden layer 1层+ output layer 1层)。
-	  - 例如：单层神经网络没有隐藏层，输入直接映射到输出。
+    - 例如：一个2层的神经网络指的是： hidden layer 1层+ output layer 1层)。
+    - 例如：单层神经网络没有隐藏层，输入直接映射到输出。
   - **别名**：人工神经网络（ANN， Artificial Neural Networks）或多层感知机（MLP, Multi-Layer Perceptrons）。
-   
+
 ---
+
 #### 2. **输出层**
+
 - **特点**：输出层的神经元通常**没有激活函数**（或可以认为输出层使用线性激活函数 $f(x) = x$）。
 - **原因**：输出层通常表示分类的类别分数（**分类任务**）或实数值目标（**回归任务**），这些值可以是任意实数。
 
 ---
+
 #### 3. **神经网络的大小**
+
 - **衡量指标**：
   - **神经元数量**：网络中神经元的总数。
   - **参数数量**：网络中可学习的权重和偏置的总数。
 - **示例计算**：
--![[L5 - 231n Neural Networks by_2025-03-05-2.png]]
+  -{{< figure src="/images/EECS498/L5 - 231n Neural Networks by_2025-03-05-2.png" alt="L5 - 231n Neural Networks by_2025-03-05-2.png" >}}
   - **2 层神经网络**（左图）：
     - 神经元：$4 + 2 = 6$（不包括输入层）。
     - 权重：$[3 \times 4] + [4 \times 2] = 20$。
@@ -190,9 +216,11 @@ $$Maxout: f(x) = \max(w_1^T x + b_1, w_2^T x + b_2)$$
 - **现代网络**：现代卷积网络（CNN， Convolutional Networks）通常包含约 1 亿个参数，由 10-20 层组成（深度学习）。
 
 ---
+
 ### Example feed-forward computation
 
 #### 1. **前向传播的基本过程**
+
 - **核心操作**：通过**矩阵乘法**和**激活函数**逐层计算神经网络的输出。
 - **输入**：输入是一个向量（或矩阵，表示批量数据）。
 - **权重和偏置**：每一层的权重 $W$ 和偏置 $b$ 是可学习的参数。
@@ -200,7 +228,9 @@ $$Maxout: f(x) = \max(w_1^T x + b_1, w_2^T x + b_2)$$
 - **激活函数**：通常使用非线性激活函数（如 Sigmoid、ReLU 等），但**输出层通常不使用激活函数**。
 
 ---
+
 #### 2. **矩阵乘法的应用**
+
 - **权重矩阵**：每一层的权重 $W$ 是一个矩阵，维度为 $[\text{当前层神经元数} \times \text{前一层神经元数}]$。
 - **偏置向量**：每一层的偏置 $b$ 是一个向量，维度为 $[\text{当前层神经元数} \times 1]$。
 - **计算过程**：
@@ -208,12 +238,14 @@ $$Maxout: f(x) = \max(w_1^T x + b_1, w_2^T x + b_2)$$
     $$
     h = f(W \cdot x + b)
     $$
-    其中：
-    - $x$ 是输入向量（或矩阵）。
+
+    其中：- $x$ 是输入向量（或矩阵）。
     - $f$ 是激活函数。
 
 ---
+
 #### 3. **示例：3 层神经网络的前向传播**
+
 - **输入**：$x$ 是一个 $[3 \times 1]$ 的向量。
 - **权重和偏置**：
   - 第一层：$W_1$ 是 $[4 \times 3]$ 矩阵，$b_1$ 是 $[4 \times 1]$ 向量。
@@ -234,7 +266,9 @@ $$Maxout: f(x) = \max(w_1^T x + b_1, w_2^T x + b_2)$$
      $$
 
 ---
+
 #### 4. **代码示例**
+
 ```python
 import numpy as np
 
@@ -255,24 +289,27 @@ out = np.dot(W3, h2) + b3  # (1x1)
 ```
 
 ---
+
 #### 5. **批量数据处理**
+
 - **输入矩阵**：上面我们假设输入变量x仅仅是一个列向量，如果输入 $x$ 是一个 $[3 \times N]$ 的矩阵（$N$ 是批量大小），则所有样本可以并行计算（be efficiently evaluated in parallel）。
 - **输出矩阵**：每一层的输出 $h$ 也是一个矩阵，维度为 $[\text{当前层神经元数} \times N]$。
 
 ---
 
-
-
 ### Representational power
 
 #### 1. **神经网络的表示能力**
+
 - **定义**：神经网络定义了一族由网络权重参数化的函数
-	- (我们可以把神经网络看作是a family of functions that are parameterized by the weights of the network)
+  - (我们可以把神经网络看作是a family of functions that are parameterized by the weights of the network)
 - **核心问题**：神经网络的表示能力如何？是否存在无法用神经网络建模的函数？
 - **结论**：**至少包含一个隐藏层的神经网络是通用逼近器**(universal approximators)，即可以逼近任何连续函数。
 
 ---
+
 #### 2. **通用逼近定理**
+
 - **定理内容**：给定任意连续函数 $f(x)$ 和任意 $\epsilon > 0$，存在一个至少包含一个隐藏层的神经网络 $g(x)$，使得：
   $$
   \forall x, \ |f(x) - g(x)| < \epsilon
@@ -281,7 +318,9 @@ out = np.dot(W3, h2) + b3  # (1x1)
 - **激活函数**：需要选择合适的非线性激活函数（如 Sigmoid）。
 
 ---
+
 #### 3. **为什么需要更深的网络？**
+
 - **理论**：如果按上面所说，一层隐藏层的神经网络就能够逼近任何函数，那么为什么需要更深的网络？
 - **实践**：
   - 单隐藏层网络虽然在数学理论上足够，但在实践中表现较差。
@@ -294,21 +333,26 @@ out = np.dot(W3, h2) + b3  # (1x1)
   - **卷积网络**（CNN）中，深度是**识别系统**的性能的关键因素(where depth has been found to be an extremely important component for a good recognition system)（通常需要 10 层以上）。
 
 ---
+
 #### 4. **图像数据的层次结构**
+
 - 针对上面所说： 深度是**识别系统**的性能的关键因素
 - **解释**：图像数据具有**层次结构**（如人脸由眼睛组成，眼睛由边缘组成等），因此多层处理更符合直觉。
 
 ---
 
-
 ### Setting number of layers and their sizes
+
 #### 1. **神经网络容量与层数**
+
 - **容量**：神经网络的容量(the capacity of the network)随着层数和每层神经元数量的增加而增加。
 - **表示能力**：更大的网络可以表示更复杂的函数，可以用来分类更加复杂的数据。
 - **过拟合风险**：但是高容量网络容易过拟合训练数据，尤其是当数据不够复杂时。
 
 ---
+
 #### 2. **层数与大小的选择**
+
 - **隐藏层数量**：
   - **无隐藏层**：直接映射输入到输出，适用于简单问题。
   - **单隐藏层**：通用逼近器，可以表示任意连续函数。
@@ -320,6 +364,7 @@ out = np.dot(W3, h2) + b3  # (1x1)
 ---
 
 #### 3. **过拟合与正则化**
+
 - **过拟合**：高容量网络可能拟合数据中的噪声，导致泛化性能下降。
 - 似乎看上去，对于没那么复杂的数据，我们更应该倾向于选择较小的神经网络，这样就避免了过拟合。
 - 但实际上这个想法不对，我们有很多正则化方法来避免过拟合，所以小的神经网络在预算足够的前提下没什么理由选。
@@ -330,7 +375,9 @@ out = np.dot(W3, h2) + b3  # (1x1)
 - **建议**：优先使用正则化方法控制过拟合，而不是减少神经元数量。
 
 ---
+
 #### 4. 神经网络：**小网络与大网络的训练**
+
 - **小网络**：
   - **优点**：损失函数的局部最小值较少。
   - **缺点**：容易陷入较差的局部最小值，训练结果方差较大。(总结为：harder to train with Gradient Descent)
@@ -340,5 +387,3 @@ out = np.dot(W3, h2) + b3  # (1x1)
 - **建议**：在计算资源允许的情况下，使用更大的网络，并通过正则化控制过拟合。
 
 ---
-
-

@@ -91,7 +91,7 @@ A ConvNet is made up of Layers（可以认为神经网络是a sequence of layers
      - 例如，假设输入是一张 100x100 的 RGB 图像（3 个通道），输入体积的大小为 100x100x3 = 30,000。如果下一层的每个神经元都连接到这 30,000 个输入神经元，那么仅一层就需要 30,000 个参数。如果网络有多层，参数数量会呈指数级增长，导致计算资源无法承受。**因此，我们应该考虑将每个神经元连接到a local region of the input volume.**
    - **每个神经元只连接到输入体积的局部区域，称为感受野（receptive field），其大小由滤波器尺寸决定。**
    - #感受野英文定义 The spatial extent of this connectivity is a hyperparameter called the receptive field of the neuron.(equivalently this is the filter size)
-   - ![L7 - 231n ConvNets by_2025-03-07-1.png](../attachments/L7%20-%20231n%20ConvNets%20by_2025-03-07-1.png "600x328")
+   - ![L7 - 231n ConvNets by_2025-03-07-1.png](../attachments/L7 - 231n ConvNets by_2025-03-07-1.png "600x328")
    - 连接在spatial dimension空间维度（宽度和高度）上是局部的，但在深度维度上是全连接的。
      - 再次强调：The connections are local in 2D space (along width and height), but always full along the entire depth of the input volume.
    - 示例：
