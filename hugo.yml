@@ -1,6 +1,6 @@
 baseURL: "http://evanzhangcn.github.io/" # 主站的 URL
-title: Evan's Blog # 站点标题
-copyright: "[©2025 Evab's Blog](http://evanzhangcn.github.io/)" # 网站的版权声明，通常显示在页脚
+title: Evan Zhang's Blog # 站点标题
+copyright: "[©2025 Evan Zhang's Blog](http://evanzhangcn.github.io/)" # 网站的版权声明，通常显示在页脚
 theme: PaperMod # 主题
 languageCode: zh-cn # 语言
 
@@ -76,8 +76,7 @@ params:
       <br>
       <div>
       ● [SonnyCalcr's Notion](https://sonnycalcr.notion.site/)
-      <br>
-      ● [博客园](https://www.cnblogs.com/SonnyCalcr)
+
       </div>
   # 社交帐号的按钮
   socialIcons:
