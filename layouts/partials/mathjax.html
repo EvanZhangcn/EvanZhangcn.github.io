@@ -4,23 +4,25 @@
       inlineMath: [['$', '$']],
       displayMath: [['$$', '$$']],
       processEscapes: true,
-      processEnvironments: true
+      processEnvironments: true,
+      tags: 'ams'
     },
     options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      processHtmlClass: 'tex2jax_process'
     }
   };
-  </script>
-  <script type="text/javascript" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
-  
-  <style>
-  code.has-jax {
-      font: inherit;
-      font-size: 100%;
-      background: inherit;
-      border: inherit;
-      color: #515151;
-  }
-  </style>
+</script>
+<script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: inherit;
+}
+</style>

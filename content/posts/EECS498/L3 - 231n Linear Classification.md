@@ -133,12 +133,6 @@ $$
 L = \frac{1}{N} \sum_i L_i \quad \text{(数据损失)} + \lambda R(W) \quad \text{(正则化损失)}
 $$
 
-展开后的完整形式为：
-
-$$
-L = \frac{1}{N} \sum_i \sum_{j \neq y_i} \left[ \max(0, f(x_i; W)_j - f(x_i; W)_{y_i} + \Delta) \right] + \lambda \sum_k \sum_l W_{k,l}^2
-$$
-
 **说明**：
 
 - $N$ 是训练样本的数量。

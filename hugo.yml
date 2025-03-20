@@ -63,7 +63,13 @@ params:
   comments: true # 评论
   images: ["https://i.postimg.cc/7hwBy7VS/calcr.png"] # 缺省的图片，比如，博客的封面
   DateFormat: "2006-01-02" # 这个时间是作者自己写的，只能这样写
-  math: true
+  math:
+    enable: true    # 启用数学公式支持
+    block:          # 块级公式配置
+      delimiter: ["$$", "$$"]
+    inline:         # 行内公式配置
+      delimiter: ["$", "$"]
+      
   orderSections: [weight]
   # 首页的文章上方的一些信息
   homeInfoParams:
@@ -145,24 +151,28 @@ outputs:
 markup:
   goldmark:
     renderer:
-      unsafe: true # 可以 unsafe，有些 html 标签和样式可能需要
+      unsafe: true
     parser:
       attribute:
         block: true
-        title: false  
-  image:
-  quality: 85
-  anchor: smart
-  resampleFilter: lanczos
-  exif:
-    disableDate: true
-    disableLatLong: true
+        title: true
+      delimiter:
+        block: true  # 添加这行来更好地处理数学公式
+    extensions:
+      typographer: false
+      definitionList: true  # 添加这行支持定义列表
+      footnote: true       # 添加这行支持脚注
+      linkify: true       # 添加这行自动转换URL为链接
+      strikethrough: true # 添加这行支持删除线
+      table: true        # 添加这行支持表格
+      taskList: true     # 添加这行支持任务列表
   highlight:
     anchorLineNos: false # 不要给行号设置锚标
     codeFences: true # 代码围栏
-    noClasses: false # TODO: 不知道干啥的，暂时没必要了解，不影响展示
-    lineNos: true # 代码行
-    lineNumbersInTable: false # 不要设置成 true，否则如果文章开头是代码的话，摘要会由一大堆数字(即代码行号)开头文章
-    # 这里设置 style 没用，得自己加 css
-    # style: "github-dark"
-    # style: monokai
+    noClasses: false 
+    # lineNos: true # 代码行
+    # lineNumbersInTable: false # 不要设置成 true，否则如果文章开头是代码的话，摘要会由一大堆数字(即代码行号)开头文章
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 2
