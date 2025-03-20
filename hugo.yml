@@ -1,6 +1,6 @@
-baseURL: "http://localhost:1313/" # 主站的 URL
+baseURL: "http://evanzhangcn.github.io/" # 主站的 URL
 title: Evan's Blog # 站点标题
-copyright: "[©2025 Evab's Blog](https://sonnycalcr.github.io/)" # 网站的版权声明，通常显示在页脚
+copyright: "[©2025 Evab's Blog](http://evanzhangcn.github.io/)" # 网站的版权声明，通常显示在页脚
 theme: PaperMod # 主题
 languageCode: zh-cn # 语言
 
